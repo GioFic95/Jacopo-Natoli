@@ -54,7 +54,7 @@ body {
 #mobile_text{
   visibility: hidden;
 }
-@media all and (max-width: 768px){
+@media (max-width: 768px){
   .row{
     flex-wrap:wrap;
   }
