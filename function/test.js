@@ -1,6 +1,9 @@
-exports.handler = (event, context, callback) => {
-    callback(null, {
+const text = process.env.TEXT;
+
+exports.handler = async (event, context) => {
+    console.log("text: ", text);
+    return {
         statusCode: 200,
-        body: 'No worries, all is working fine!'
-    })
-}
+        body: text
+    };
+};
