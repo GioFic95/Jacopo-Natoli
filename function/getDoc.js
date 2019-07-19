@@ -1,7 +1,8 @@
 const { text } = process.env.TEXT;
-console.log("text: ", text);
+const text1 = process.env.TEXT;
 
 exports.handler = async (event, context) => {
+    console.log("text: ", text, text1);
     return {
         statusCode: 200,
         body: text
