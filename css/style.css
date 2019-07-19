@@ -52,7 +52,7 @@ body {
   width:100%;
 }
 #mobile_text{
-  visibility: hidden;
+  visibility: visible;
 }
 @media (max-width: 768px){
   .row{
