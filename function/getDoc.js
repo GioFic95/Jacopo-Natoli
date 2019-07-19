@@ -4,19 +4,14 @@ const URL = "https://docs.googleapis.com/v1/documents/1aD2rEARRqD7GOv9yycQZhnYkE
 exports.handler = async (event, context) => {
     let response, data;
 
-    try {
-        response = await fetch(URL, {
-            method: "GET",
-            headers: new Headers({
-                "Accept": "application/json"
-            })
-        });
-
-        data = await response.json();
-    } catch (error) {
-        console.error(error.message);
-        return;
+    let httpReq = new XMLHttpRequest();
+    httpReq.open("GET", URL, false);
+    httpReq.send();
+    if (httpReq.status === 200) {
+        response = httpReq.responseText;
     }
+
+    data = await response.json();
 
     return {
         statusCode: 200,
