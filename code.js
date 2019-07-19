@@ -1,3 +1,3 @@
 $(document).ready(function () {
-    $("#my_quote").load("/.netlify/function/test")
+    $("#my_quote").load("/.netlify/functions/test")
 });
