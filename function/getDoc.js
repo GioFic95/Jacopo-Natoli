@@ -16,11 +16,17 @@ exports.handler = async (event, context) => {
         });
 
         data = await response.json();
-        console.log("0", response.text());
-        console.log("1", data);
         data = data.body.content;
-        console.log("2", data);
+        console.log("data:", data);
         out = [];
+        let d;
+        for (d of data) {
+            try {
+                out.push(d.paragraph.elements[0].textRun.content);
+            } catch (e) {
+                console.error(e, d);
+            }
+        }
 
     } catch (error) {
         console.error(error.message);
