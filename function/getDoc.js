@@ -16,7 +16,6 @@ exports.handler = async (event, context) => {
         });
 
         data = await response.json();
-        data = JSON.parse(data);
         data = data.body.content;
         out = [];
         let d;
