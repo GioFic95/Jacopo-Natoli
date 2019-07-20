@@ -5,6 +5,7 @@ const URL = "https://docs.googleapis.com/v1/documents/1aD2rEARRqD7GOv9yycQZhnYkE
 
 exports.handler = async (event, context) => {
     let id = event.queryStringParameters.id;
+    console.log("id:", id);
 
     let response, data, out;
 
@@ -18,8 +19,8 @@ exports.handler = async (event, context) => {
         });
 
         data = await response.json();
-        data = data.body.content;
         console.log("data:", data);
+        data = data.body.content;
         out = [];
         let d;
         for (d of data) {
