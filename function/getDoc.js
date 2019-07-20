@@ -4,7 +4,7 @@ const TOKEN = process.env.ACCESS_TOKEN;
 const URL = "https://docs.googleapis.com/v1/documents/1aD2rEARRqD7GOv9yycQZhnYkE2NAKmovBHcUUoKDkZg?suggestionsViewMode=PREVIEW_WITHOUT_SUGGESTIONS&key=";
 
 exports.handler = async (event, context) => {
-    let response, data;
+    let response, data, out;
 
     try {
         response = await fetch(URL, {
@@ -16,6 +16,14 @@ exports.handler = async (event, context) => {
         });
 
         data = await response.json();
+        data = data.body.content;
+        out = [];
+        let d;
+        for (d of data) {
+            try {
+                out.push(d.paragraph.elements[0].textRun.content);
+            } catch {console.log(x)}
+        }
     } catch (error) {
         console.error(error.message);
         return;
@@ -23,6 +31,6 @@ exports.handler = async (event, context) => {
 
     return {
         statusCode: 200,
-        body: JSON.stringify(data)
+        body: JSON.stringify(out)
     };
 };
