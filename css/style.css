@@ -47,13 +47,16 @@ body {
   width:100%;
 }
 #mobile_text{
-  visibility: visible;
+  /*visibility: hidden;*/
+  display: none;
+  color: gray;
 }
 @media (max-width: 768px){
   .row{
     flex-wrap:wrap;
   }
   #mobile_text{
-    visibility: visible;
+    /*visibility: visible;*/
+    display: block;
   }
 }
