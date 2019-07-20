@@ -15,7 +15,7 @@ exports.handler = async (event, context) => {
             })
         });
 
-        data = await response.text().replace("\\n", " ").replace("\n", " ");
+        data = await response.json();
         data = JSON.parse(data);
         data = data.body.content;
         out = [];
@@ -23,7 +23,9 @@ exports.handler = async (event, context) => {
         for (d of data) {
             try {
                 out.push(d.paragraph.elements[0].textRun.content);
-            } catch {console.log(x)}
+            } catch {
+                console.log(d);
+            }
         }
     } catch (error) {
         console.error(error.message);
