@@ -16,7 +16,9 @@ exports.handler = async (event, context) => {
         });
 
         data = await response.json();
+        console.log("1", data);
         data = data.body.content;
+        console.log("2", data);
         out = [];
         let d;
         for (d of data) {
