@@ -51,12 +51,28 @@ body {
   display: none;
   color: gray;
 }
+#footer{
+  background-color: #292929;
+}
+#footer-div{
+  padding: 10px;
+}
+.footer-text{
+  color: white;
+  font-size: small;
+}
+.footer-link{
+  color: lightskyblue;
+  font-size: small;
+}
+a.footer-link:visited{
+  color: #caa3ee;
+}
 @media (max-width: 768px){
   .row{
     flex-wrap:wrap;
   }
   #mobile_text{
-    /*visibility: visible;*/
     display: block;
   }
 }
