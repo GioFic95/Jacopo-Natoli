@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
         let d;
         for (d of data) {
             try {
-                let par = d.paragraph.elements[0].textRun.content.replace("\\n", "")
+                let par = d.paragraph.elements[0].textRun.content.replace("\\n", "<br>")
                 out.push(par);
             } catch (e) {
                 console.error(e, d);
