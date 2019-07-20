@@ -15,7 +15,8 @@ exports.handler = async (event, context) => {
             })
         });
 
-        data = await response.json();
+        data = await response.text().replace("\\n", " ").replace("\n", " ");
+        data = JSON.parse(data);
         data = data.body.content;
         out = [];
         let d;
