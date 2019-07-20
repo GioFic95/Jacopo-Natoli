@@ -1,3 +1,3 @@
 $(document).ready(function () {
-    $("#my_quote").load("/.netlify/functions/getDoc?id=3")
+    $("#my_quote").load("/.netlify/functions/getDoc");
 });
