@@ -21,14 +21,7 @@ exports.handler = async (event, context) => {
         data = data.body.content;
         console.log("2", data);
         out = [];
-        let d;
-        for (d of data) {
-            try {
-                out.push(d.paragraph.elements[0].textRun.content);
-            } catch {
-                console.log(d);
-            }
-        }
+
     } catch (error) {
         console.error(error.message);
         return;
