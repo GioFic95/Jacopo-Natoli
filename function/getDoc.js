@@ -8,7 +8,7 @@ exports.handler = async (event, context) => {
     try {
         response = await fetch(URL, {
             method: "GET",
-            headers: new Headers({
+            headers: new fetch.Headers({
                 "Accept": "application/json"
             })
         });
