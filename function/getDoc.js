@@ -43,7 +43,7 @@ exports.handler = async (event, context) => {
         let d;
         for (d of data) {
             try {
-                let par = d.paragraph.elements[0].textRun.content.replace("\n", "<br>");
+                let par = d.paragraph.elements[0].textRun.content.replace("\n", "<br/>");
                 out.push(par);
             } catch (e) {
                 console.error(e, d);
@@ -55,8 +55,13 @@ exports.handler = async (event, context) => {
         return;
     }
 
+    let body = JSON.stringify(out[id]);
+    if (body.endsWith("<br/>")) {
+        body = body.substring(0, body.length-5);
+    }
+
     return {
         statusCode: 200,
-        body: JSON.stringify(out[id])
+        body: body
     };
 };
