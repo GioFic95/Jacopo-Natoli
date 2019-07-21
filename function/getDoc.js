@@ -27,7 +27,8 @@ exports.handler = async (event, context) => {
         console.log("docs:", docs);
 
         const response = await docs.documents.get({
-            documentId: '1XPbMENiP5bWP_cbqc0bEWbq78vmUf-rWQ6aB6FVZJyc',
+            // documentId: '1XPbMENiP5bWP_cbqc0bEWbq78vmUf-rWQ6aB6FVZJyc',
+            documentId: '1E6DXvttm54OgaaJjyo5vpeaNbE66izNMaE2tp3O048c',
             suggestionsViewMode: 'PREVIEW_WITHOUT_SUGGESTIONS',
             fields: 'body/content/paragraph/elements/textRun/content'
         });
