@@ -1,14 +1,7 @@
-const fetch = require('node-fetch');
 const {google} = require('googleapis');
 const {auth} = require('google-auth-library');
-const compute = google.compute('v1');
-const path = require('path');
 
 const MY_KEYS = process.env.GOOGLE_APPLICATION_CREDENTIALS;
-// const MY_URL = process.env.URL;
-// const KEY = process.env.GOOGLE_DRIVE_KEY;
-// const TOKEN = process.env.ACCESS_TOKEN;
-// const URL = "https://docs.googleapis.com/v1/documents/1aD2rEARRqD7GOv9yycQZhnYkE2NAKmovBHcUUoKDkZg?suggestionsViewMode=PREVIEW_WITHOUT_SUGGESTIONS&key=";
 
 const keys = JSON.parse(MY_KEYS);
 
@@ -27,8 +20,7 @@ exports.handler = async (event, context) => {
         console.log("docs:", docs);
 
         const response = await docs.documents.get({
-            documentId: '1XPbMENiP5bWP_cbqc0bEWbq78vmUf-rWQ6aB6FVZJyc',
-            // documentId: '1E6DXvttm54OgaaJjyo5vpeaNbE66izNMaE2tp3O048c',
+            documentId: '1AyvTkn1teSVBoAWnOsh7nBjGe3sPDfHVMRPStAUYj6A',
             suggestionsViewMode: 'PREVIEW_WITHOUT_SUGGESTIONS',
             fields: 'body/content/paragraph/elements/textRun/content'
         });
