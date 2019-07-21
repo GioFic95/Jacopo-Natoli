@@ -45,12 +45,6 @@ body {
 #my-doc-iframe{
   height:95vh;
   width:100%;
-  display: block;
-}
-#my-doc-iframe-mobile{
-  height:95vh;
-  width:100%;
-  display: none;
 }
 #mobile_text{
   display: none;
@@ -78,16 +72,6 @@ a.footer-link:visited{
     flex-wrap:wrap;
   }
   #mobile_text{
-    display: block;
-  }
-  #my-doc-iframe{
-    height:95vh;
-    width:100%;
-    display: none;
-  }
-  #my-doc-iframe-mobile{
-    height:95vh;
-    width:100%;
     display: block;
   }
 }
