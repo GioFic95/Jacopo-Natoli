@@ -18,17 +18,20 @@ exports.handler = async (event, context) => {
     try {
         const client = auth.fromJSON(keys);
         client.scopes = ['https://www.googleapis.com/auth/compute', 'https://www.googleapis.com/auth/documents.readonly'];
+        console.log("client:", client);
 
         const docs = await google.docs({
             version: 'v1',
             auth: client,
         });
+        console.log("docs:", docs);
 
         const response = await docs.documents.get({
             documentId: '1XPbMENiP5bWP_cbqc0bEWbq78vmUf-rWQ6aB6FVZJyc',
             suggestionsViewMode: 'PREVIEW_WITHOUT_SUGGESTIONS',
             fields: 'body/content/paragraph/elements/textRun/content'
         });
+        console.log("response data:", response.data);
 
         // response = await fetch(URL, {
         //     method: "GET",
@@ -38,7 +41,6 @@ exports.handler = async (event, context) => {
         //     })
         // });
 
-        console.log("response data:", response.data);
         data = await JSON.parse(response.data);
         console.log("json data:", data);
         data = data.body.content;
