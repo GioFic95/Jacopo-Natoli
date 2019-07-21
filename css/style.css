@@ -47,7 +47,6 @@ body {
   width:100%;
 }
 #mobile_text{
-  /*visibility: hidden;*/
   display: none;
   color: gray;
 }
