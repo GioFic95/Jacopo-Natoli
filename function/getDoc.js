@@ -1,29 +1,27 @@
 const fetch = require('node-fetch');
 const {google} = require('googleapis');
+const {auth} = require('google-auth-library');
 const compute = google.compute('v1');
 const path = require('path');
 
-const KEY_PATH = process.env.GOOGLE_APPLICATION_CREDENTIALS;
-const MY_URL = process.env.URL;
-const KEY = process.env.GOOGLE_DRIVE_KEY;
-const TOKEN = process.env.ACCESS_TOKEN;
-const URL = "https://docs.googleapis.com/v1/documents/1aD2rEARRqD7GOv9yycQZhnYkE2NAKmovBHcUUoKDkZg?suggestionsViewMode=PREVIEW_WITHOUT_SUGGESTIONS&key=";
+const MY_KEYS = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+// const MY_URL = process.env.URL;
+// const KEY = process.env.GOOGLE_DRIVE_KEY;
+// const TOKEN = process.env.ACCESS_TOKEN;
+// const URL = "https://docs.googleapis.com/v1/documents/1aD2rEARRqD7GOv9yycQZhnYkE2NAKmovBHcUUoKDkZg?suggestionsViewMode=PREVIEW_WITHOUT_SUGGESTIONS&key=";
+
+const keys = JSON.parse(MY_KEYS);
 
 exports.handler = async (event, context) => {
     let data, out, id;
 
-    const kp = path.join(MY_URL, KEY_PATH);
-    console.log("*** ", kp, " ***");
-
     try {
-        const oauth2Client = await google.auth.getClient({
-            keyFile: kp,
-            scopes: ['https://www.googleapis.com/auth/compute', 'https://www.googleapis.com/auth/documents.readonly']
-        });
+        const client = auth.fromJSON(keys);
+        client.scopes = ['https://www.googleapis.com/auth/compute', 'https://www.googleapis.com/auth/documents.readonly'];
 
         const docs = await google.docs({
             version: 'v1',
-            auth: oauth2Client,
+            auth: client,
         });
 
         const response = await docs.documents.get({
