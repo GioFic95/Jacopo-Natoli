@@ -35,31 +35,23 @@ exports.handler = async (event, context) => {
         console.log("response data:", response.data);
         responseData = response.data;
 
-        // response = await fetch(URL, {
-        //     method: "GET",
-        //     headers: new fetch.Headers({
-        //         "Accept": "application/json",
-        //         "Authorization": "Bearer " + TOKEN
-        //     })
-        // });
-
-        data = await JSON.parse(response.data);
-        console.log("json data:", data);
-        data = data.body.content;
-
-        id = Math.floor(Math.random() * data.length-1);
-        console.log("id:", id);
-
-        out = [];
-        let d;
-        for (d of data) {
-            try {
-                let par = d.paragraph.elements[0].textRun.content.replace("\n", "<br>");
-                out.push(par);
-            } catch (e) {
-                console.error(e, d);
-            }
-        }
+        // data = await JSON.parse(response.data);
+        // console.log("json data:", data);
+        // data = data.body.content;
+        //
+        // id = Math.floor(Math.random() * data.length-1);
+        // console.log("id:", id);
+        //
+        // out = [];
+        // let d;
+        // for (d of data) {
+        //     try {
+        //         let par = d.paragraph.elements[0].textRun.content.replace("\n", "<br>");
+        //         out.push(par);
+        //     } catch (e) {
+        //         console.error(e, d);
+        //     }
+        // }
 
     } catch (error) {
         console.error(error.message);
