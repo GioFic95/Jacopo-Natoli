@@ -1,22 +1,41 @@
 const fetch = require('node-fetch');
+const {google} = require('googleapis');
+const compute = google.compute('v1');
+
 const KEY = process.env.GOOGLE_DRIVE_KEY;
 const TOKEN = process.env.ACCESS_TOKEN;
 const URL = "https://docs.googleapis.com/v1/documents/1aD2rEARRqD7GOv9yycQZhnYkE2NAKmovBHcUUoKDkZg?suggestionsViewMode=PREVIEW_WITHOUT_SUGGESTIONS&key=";
 
 exports.handler = async (event, context) => {
-    let response, data, out, id;
+    let data, out, id;
 
     try {
-        response = await fetch(URL, {
-            method: "GET",
-            headers: new fetch.Headers({
-                "Accept": "application/json",
-                "Authorization": "Bearer " + TOKEN
-            })
+        const oauth2Client = await google.auth.getClient({
+            scopes: ['https://www.googleapis.com/auth/compute', 'https://www.googleapis.com/auth/documents.readonly']
         });
 
-        data = await response.json();
-        console.log("data:", data);
+        const docs = await google.docs({
+            version: 'v1',
+            auth: oauth2Client,
+        });
+
+        const response = await docs.documents.get({
+            documentId: '1XPbMENiP5bWP_cbqc0bEWbq78vmUf-rWQ6aB6FVZJyc',
+            suggestionsViewMode: 'PREVIEW_WITHOUT_SUGGESTIONS',
+            fields: 'body/content/paragraph/elements/textRun/content'
+        });
+
+        // response = await fetch(URL, {
+        //     method: "GET",
+        //     headers: new fetch.Headers({
+        //         "Accept": "application/json",
+        //         "Authorization": "Bearer " + TOKEN
+        //     })
+        // });
+
+        console.log("response data:", response.data);
+        data = await JSON.parse(response.data);
+        console.log("json data:", data);
         data = data.body.content;
 
         id = Math.floor(Math.random() * data.length-1);
