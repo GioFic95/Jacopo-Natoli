@@ -61,6 +61,6 @@ exports.handler = async (event, context) => {
     return {
         statusCode: 200,
         // body: JSON.stringify(out[id])
-        body: responseData
+        body: JSON.stringify(responseData)
     };
 };
