@@ -1,16 +1,22 @@
 const fetch = require('node-fetch');
 const {google} = require('googleapis');
 const compute = google.compute('v1');
+const path = require('path');
 
 const KEY = process.env.GOOGLE_DRIVE_KEY;
 const TOKEN = process.env.ACCESS_TOKEN;
+const KEY_PATH = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 const URL = "https://docs.googleapis.com/v1/documents/1aD2rEARRqD7GOv9yycQZhnYkE2NAKmovBHcUUoKDkZg?suggestionsViewMode=PREVIEW_WITHOUT_SUGGESTIONS&key=";
 
 exports.handler = async (event, context) => {
     let data, out, id;
 
+    const kp = path.join(__dirname, KEY_PATH);
+    console.log("*** ", kp, " ***");
+
     try {
         const oauth2Client = await google.auth.getClient({
+            keyFile: kp,
             scopes: ['https://www.googleapis.com/auth/compute', 'https://www.googleapis.com/auth/documents.readonly']
         });
 
