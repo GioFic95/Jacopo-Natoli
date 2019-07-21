@@ -13,7 +13,7 @@ const MY_KEYS = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 const keys = JSON.parse(MY_KEYS);
 
 exports.handler = async (event, context) => {
-    let data, out, id, responseData;
+    let data, out, id;
 
     try {
         const client = auth.fromJSON(keys);
@@ -32,26 +32,23 @@ exports.handler = async (event, context) => {
             suggestionsViewMode: 'PREVIEW_WITHOUT_SUGGESTIONS',
             fields: 'body/content/paragraph/elements/textRun/content'
         });
-        console.log("response data:", response.data);
-        responseData = response.data;
 
-        // data = await JSON.parse(response.data);
-        // console.log("json data:", data);
-        // data = data.body.content;
-        //
-        // id = Math.floor(Math.random() * data.length-1);
-        // console.log("id:", id);
-        //
-        // out = [];
-        // let d;
-        // for (d of data) {
-        //     try {
-        //         let par = d.paragraph.elements[0].textRun.content.replace("\n", "<br>");
-        //         out.push(par);
-        //     } catch (e) {
-        //         console.error(e, d);
-        //     }
-        // }
+        data = response.data.body.content;
+        console.log("data:", data);
+
+        id = Math.floor(Math.random() * data.length-1);
+        console.log("id:", id);
+
+        out = [];
+        let d;
+        for (d of data) {
+            try {
+                let par = d.paragraph.elements[0].textRun.content.replace("\n", "<br>");
+                out.push(par);
+            } catch (e) {
+                console.error(e, d);
+            }
+        }
 
     } catch (error) {
         console.error(error.message);
@@ -60,7 +57,6 @@ exports.handler = async (event, context) => {
 
     return {
         statusCode: 200,
-        // body: JSON.stringify(out[id])
-        body: JSON.stringify(responseData)
+        body: JSON.stringify(out[id])
     };
 };
