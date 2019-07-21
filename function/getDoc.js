@@ -13,7 +13,7 @@ const MY_KEYS = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 const keys = JSON.parse(MY_KEYS);
 
 exports.handler = async (event, context) => {
-    let data, out, id;
+    let data, out, id, responseData;
 
     try {
         const client = auth.fromJSON(keys);
@@ -33,6 +33,7 @@ exports.handler = async (event, context) => {
             fields: 'body/content/paragraph/elements/textRun/content'
         });
         console.log("response data:", response.data);
+        responseData = response.data;
 
         // response = await fetch(URL, {
         //     method: "GET",
@@ -67,6 +68,7 @@ exports.handler = async (event, context) => {
 
     return {
         statusCode: 200,
-        body: JSON.stringify(out[id])
+        // body: JSON.stringify(out[id])
+        body: responseData
     };
 };
