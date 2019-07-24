@@ -53,6 +53,10 @@ body {
 #footer{
   background-color: #292929;
 }
+#header{
+  background-color: #000081;
+  color: white;
+}
 #footer-div{
   padding: 10px;
 }
