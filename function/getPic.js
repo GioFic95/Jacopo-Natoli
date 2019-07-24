@@ -57,10 +57,8 @@ exports.handler = async (event, context) => {
         return;
     }
 
-    let body = JSON.stringify(out[id]);
-    if (body.endsWith("<br/>\"")) {
-        body = body.substring(0, body.length-6)+'"';
-    }
+    // let body = JSON.stringify(out[id]);
+    let body = out[id].toString();
 
     return {
         statusCode: 200,
