@@ -13,20 +13,20 @@ exports.handler = async (event, context) => {
     try {
         const client = auth.fromJSON(keys);
         client.scopes = ['https://www.googleapis.com/auth/drive', 'https://www.googleapis.com/auth/drive.metadata.readonly'];
-        console.log("client:", client);
+        // console.log("client:", client);
 
         const drive = google.drive({
             version: 'v3',
             auth: client,
         });
-        console.log("drive:", drive);
+        // console.log("drive:", drive);
 
         const response = await drive.files.list({
             q: "trashed = false and '1p7ZePtk51ZhHIvyXrLVZ4_2qFOPSf0FD' in parents",
             pageSize: 1000,
             fields: 'nextPageToken, files(id, name, mimeType, webViewLink, webContentLink, thumbnailLink)'
         });
-        console.log("response: " + response.toString());
+        console.log("*** response: " + response.toString());
 
         files = response.data.files;
         console.log("data:", files);
