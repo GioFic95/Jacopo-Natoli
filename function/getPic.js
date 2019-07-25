@@ -6,7 +6,7 @@ const MY_KEYS = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 const keys = JSON.parse(MY_KEYS);
 
 exports.handler = async (event, context) => {
-    console.log("--- VERSION = 120");
+    console.log("--- VERSION = 130");
 
     let files, out, id;
 
@@ -26,7 +26,7 @@ exports.handler = async (event, context) => {
             pageSize: 1000,
             fields: 'nextPageToken, files(id, name, mimeType, webViewLink, webContentLink, thumbnailLink)'
         });
-        console.log("*** response: ", response);
+        // console.log("*** response: ", response);
 
         files = response.data.files;
         // console.log("data:", files);
@@ -46,10 +46,10 @@ exports.handler = async (event, context) => {
                 if (file.mimeType && file.mimeType.includes("image")) {
                     let name = file.name.substring(0, file.name.lastIndexOf("."));
                     let imgLink = file.webContentLink.substring(0, file.webContentLink.indexOf("&export"));
-                    f_out = "<img alt='" + name + "' src='" + imgLink + "'/>";
+                    f_out = "<img width='100%' alt='" + name + "' src='" + imgLink + "'/>";
                 } else if (file.mimeType && file.mimeType.includes("video")) {
                     let videoLink = file.webContentLink.substring(0, file.webContentLink.indexOf("&export"));
-                    f_out = "<video controls> <source src='" + videoLink + "'/> </video>";
+                    f_out = "<video width='100%' controls> <source src='" + videoLink + "'/> </video>";
                 }
                 out.push(f_out);
                 // console.log("file out:", f_out);
@@ -64,7 +64,7 @@ exports.handler = async (event, context) => {
     }
 
     console.log("out:", out);
-    
+
     let body = out[id].toString();
 
     return {
