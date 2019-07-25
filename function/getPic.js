@@ -6,7 +6,7 @@ const MY_KEYS = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 const keys = JSON.parse(MY_KEYS);
 
 exports.handler = async (event, context) => {
-    console.log("--- VERSION = 110");
+    console.log("--- VERSION = 120");
 
     let files, out, id;
 
@@ -31,14 +31,17 @@ exports.handler = async (event, context) => {
         files = response.data.files;
         // console.log("data:", files);
 
-        id = Math.floor(Math.random() * files.length-1);
+        let len = files.length;
+        console.log("len:", len);
+
+        id = Math.floor(Math.random() * len-1);
         console.log("id:", id);
 
         out = [];
         let file;
-        if (files && files.length > 0) {
+        if (files && len > 0) {
             for (file of files) {
-                console.log("file: ", file);
+                // console.log("file: ", file);
                 let f_out;
                 if (file.mimeType && file.mimeType.includes("image")) {
                     let name = file.name.substring(0, file.name.lastIndexOf("."));
@@ -49,7 +52,7 @@ exports.handler = async (event, context) => {
                     f_out = "<video controls> <source src='" + videoLink + "'/> </video>";
                 }
                 out.push(f_out);
-                console.log("file out:", f_out);
+                // console.log("file out:", f_out);
             }
         } else {
             console.log("cartella foto vuota")
@@ -60,9 +63,8 @@ exports.handler = async (event, context) => {
         return;
     }
 
-    // console.log("out:", out);
-
-    // let body = JSON.stringify(out[id]);
+    console.log("out:", out);
+    
     let body = out[id].toString();
 
     return {
