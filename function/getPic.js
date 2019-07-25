@@ -1,5 +1,3 @@
-// 1p7ZePtk51ZhHIvyXrLVZ4_2qFOPSf0FD
-
 const {google} = require('googleapis');
 const {auth} = require('google-auth-library');
 
@@ -29,16 +27,16 @@ exports.handler = async (event, context) => {
         console.log("*** response: " + response.toString().substring(0, 100));
 
         files = response.data.files;
-        console.log("data:", files);
+        // console.log("data:", files);
 
         id = Math.floor(Math.random() * data.length-1);
-        console.log("id:", id);
+        // console.log("id:", id);
 
         out = [];
         let file;
         if (files && files.length > 0) {
             for (file of files) {
-                console.log(file);
+                // console.log(file);
                 if (file.mimeType && file.mimeType.includes("image")) {
                     let name = file.name.substring(0, file.name.lastIndexOf("."));
                     let imgLink = file.webContentLink.substring(0, file.webContentLink.indexOf("&export"));
@@ -53,7 +51,7 @@ exports.handler = async (event, context) => {
         }
 
     } catch (error) {
-        console.error(error.message);
+        console.error("ERROR: " + error.message);
         return;
     }
 
