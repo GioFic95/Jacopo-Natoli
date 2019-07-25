@@ -26,7 +26,7 @@ exports.handler = async (event, context) => {
             pageSize: 1000,
             fields: 'nextPageToken, files(id, name, mimeType, webViewLink, webContentLink, thumbnailLink)'
         });
-        console.log("*** response: " + response.toString());
+        console.log("*** response: " + response.toString().substring(0, 100));
 
         files = response.data.files;
         console.log("data:", files);
