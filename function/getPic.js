@@ -26,7 +26,7 @@ exports.handler = async (event, context) => {
             pageSize: 1000,
             fields: 'nextPageToken, files(id, name, mimeType, webViewLink, webContentLink, thumbnailLink)'
         });
-        console.log("response", response.data);
+        console.log("response: " + response.toString());
 
         files = response.data.files;
         console.log("data:", files);
@@ -45,7 +45,7 @@ exports.handler = async (event, context) => {
                     out += "<img alt='" + name + "' src='" + imgLink + "'/>";
                 } else if (file.mimeType && file.mimeType.includes("video")) {
                     let videoLink = file.webContentLink.substring(0, file.webContentLink.indexOf("&export"));
-                    out += "<video controls> <source src='" + videoLink + "'/> </video> <br/>";
+                    out += "<video controls> <source src='" + videoLink + "'/> </video>";
                 }
             }
         } else {
