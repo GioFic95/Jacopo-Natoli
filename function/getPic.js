@@ -29,8 +29,8 @@ exports.handler = async (event, context) => {
         files = response.data.files;
         // console.log("data:", files);
 
-        id = Math.floor(Math.random() * data.length-1);
-        // console.log("id:", id);
+        id = Math.floor(Math.random() * files.length-1);
+        console.log("id:", id);
 
         out = [];
         let file;
