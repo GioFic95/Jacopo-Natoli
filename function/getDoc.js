@@ -6,7 +6,7 @@ const MY_KEYS = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 const keys = JSON.parse(MY_KEYS);
 
 exports.handler = async (event, context) => {
-    console.log("--- VERSION = 110");
+    console.log("--- VERSION = 120");
 
     let data, out, id;
 
@@ -38,7 +38,7 @@ exports.handler = async (event, context) => {
         for (d of data) {
             try {
                 let par = d.paragraph.elements[0].textRun.content.replace("\n", "<br/>");
-                if (par === ""){
+                if (par === "" || par === "<br/>"){
                     console.log("paragrafo vuoto:", par);
                 } else {
                     console.log("paragrafo pieno:", par);
