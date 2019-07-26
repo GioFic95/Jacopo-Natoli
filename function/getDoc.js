@@ -36,7 +36,11 @@ exports.handler = async (event, context) => {
         for (d of data) {
             try {
                 let par = d.paragraph.elements[0].textRun.content.replace("\n", "<br/>");
-                out.push(par);
+                if (par === ""){
+                    console.log("paragrafo vuoto:", par)
+                } else {
+                    out.push(par);
+                }
             } catch (e) {
                 console.error(e, d, "SHALLA");
             }
