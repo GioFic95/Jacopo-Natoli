@@ -28,7 +28,7 @@ exports.handler = async (event, context) => {
         data = response.data.body.content;
         console.log("data:", data);
 
-        id = Math.floor(Math.random() * data.length-1);
+        id = Math.floor(Math.random() * (data.length-1));
         console.log("id:", id);
 
         out = [];

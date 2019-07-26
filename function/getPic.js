@@ -34,7 +34,7 @@ exports.handler = async (event, context) => {
         let len = files.length;
         console.log("len:", len);
 
-        id = Math.floor(Math.random() * len-1);
+        id = Math.floor(Math.random() * (len-1));
         console.log("id:", id);
 
         out = [];
