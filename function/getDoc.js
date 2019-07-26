@@ -6,7 +6,7 @@ const MY_KEYS = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 const keys = JSON.parse(MY_KEYS);
 
 exports.handler = async (event, context) => {
-    console.log("--- VERSION = 120");
+    console.log("--- VERSION = 130");
 
     let data, out, id;
 
@@ -30,18 +30,15 @@ exports.handler = async (event, context) => {
         data = response.data.body.content;
         console.log("data:", data);
 
-        id = Math.floor(Math.random() * (data.length-1));
-        console.log("id:", id);
-
         out = [];
         let d;
         for (d of data) {
             try {
                 let par = d.paragraph.elements[0].textRun.content.replace("\n", "<br/>");
                 if (par === "" || par === "<br/>"){
-                    console.log("paragrafo vuoto:", par);
+                    // console.log("paragrafo vuoto:", par);
                 } else {
-                    console.log("paragrafo pieno:", par);
+                    // console.log("paragrafo pieno:", par);
                     out.push(par);
                 }
             } catch (e) {
@@ -53,6 +50,9 @@ exports.handler = async (event, context) => {
         console.error(error.message);
         return;
     }
+
+    id = Math.floor(Math.random() * (out.length - 1));
+    console.log("id:", id);
 
     let body = JSON.stringify(out[id]);
     if (body.endsWith("<br/>\"")) {

@@ -6,7 +6,7 @@ const MY_KEYS = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 const keys = JSON.parse(MY_KEYS);
 
 exports.handler = async (event, context) => {
-    console.log("--- VERSION = 130");
+    console.log("--- VERSION = 140");
 
     let files, out, id;
 
@@ -31,15 +31,9 @@ exports.handler = async (event, context) => {
         files = response.data.files;
         // console.log("data:", files);
 
-        let len = files.length;
-        console.log("len:", len);
-
-        id = Math.floor(Math.random() * (len-1));
-        console.log("id:", id);
-
         out = [];
         let file;
-        if (files && len > 0) {
+        if (files && files.length > 0) {
             for (file of files) {
                 // console.log("file: ", file);
                 let f_out;
@@ -47,11 +41,12 @@ exports.handler = async (event, context) => {
                     let name = file.name.substring(0, file.name.lastIndexOf("."));
                     let imgLink = file.webContentLink.substring(0, file.webContentLink.indexOf("&export"));
                     f_out = "<img width='100%' alt='" + name + "' src='" + imgLink + "'/>";
+                    out.push(f_out);
                 } else if (file.mimeType && file.mimeType.includes("video")) {
                     let videoLink = file.webContentLink.substring(0, file.webContentLink.indexOf("&export"));
                     f_out = "<video width='100%' controls> <source src='" + videoLink + "'/> </video>";
+                    out.push(f_out);
                 }
-                out.push(f_out);
                 // console.log("file out:", f_out);
             }
         } else {
@@ -63,7 +58,9 @@ exports.handler = async (event, context) => {
         return;
     }
 
-    console.log("out:", out);
+    // console.log("out:", out);
+    id = Math.floor(Math.random() * (out.length - 1));
+    console.log("id:", id);
 
     let body = out[id].toString();
 
