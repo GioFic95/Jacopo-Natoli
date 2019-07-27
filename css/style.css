@@ -76,6 +76,7 @@ a.footer-link:visited{
 }
 #side-bar{
   margin-left: 18px;
+  color: gray;
 }
 #my-link-block{
   display: flex;
