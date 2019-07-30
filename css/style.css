@@ -29,6 +29,9 @@ body {
   flex-grow:1;
   flex-basis:100%;
 }
+.github{
+  height: 16px;
+}
 .footer-text{
   color: white;
   font-size: small;
