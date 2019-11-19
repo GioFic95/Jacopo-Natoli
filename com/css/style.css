@@ -1,0 +1,19 @@
+.home-body {
+    background-color: black;
+}
+.my-text {
+    font-family: 'Libre Baskerville', serif;
+    color: white;
+}
+.my-link {
+    color: white;
+}
+.my-link:hover {
+    color: red;
+}
+.my-link:active {
+    color: red;
+}
+.my-title {
+    font-family: 'Libre Baskerville', serif;
+}
