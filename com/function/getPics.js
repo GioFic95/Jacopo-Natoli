@@ -5,7 +5,7 @@ const MY_KEYS = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 
 const keys = JSON.parse(MY_KEYS);
 
-exports.handler = async (event, context) => {
+exports.handler = async function(event, context){
     console.log("--- VERSION = 140");
 
     let files, out, id;
