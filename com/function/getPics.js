@@ -59,7 +59,7 @@ exports.handler = async function(event, context){
     }
 
     console.log("out:", out);
-    console.log("img num:", files.length);
+    console.log("img num:", out.length);
 
     // id = Math.floor(Math.random() * (out.length - 1));
     // console.log("id:", id);
@@ -67,6 +67,6 @@ exports.handler = async function(event, context){
 
     return {
         statusCode: 200,
-        body: String(files.length) // body
+        body: String(out.length) // body
     };
 };
