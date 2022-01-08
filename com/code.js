@@ -1,7 +1,7 @@
 $(document).ready(function () {
     console.log("pre");
 
-    $.get("example.php", function(data) {
+    $.get("/.netlify/functions/getPics", function(data) {
         console.log("success");
         console.log(data);
         let html_text = ""
