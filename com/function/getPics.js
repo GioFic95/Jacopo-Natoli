@@ -44,7 +44,7 @@ exports.handler = async function(event, context){
                     f_out = "<img\n" +
                         "  src='" + imgLink + "\n" +
                         "  class='w-100 shadow-1-strong rounded mb-4'\n" +
-                        "  alt='Boat on Calm Water'\n" +
+                        "  alt='" + name + "'\n" +
                         "/>"
                     out.push(f_out);
                 }
