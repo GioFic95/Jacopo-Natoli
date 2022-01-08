@@ -5,7 +5,7 @@ $(document).ready(function () {
         console.log("success");
         console.log(data);
         let imgs = JSON.parse(data);
-        let html_text = ""
+        let html_text = "<div class=\"row\">"
         let i = 0;
         for (let img of imgs) {
             if (i === 0)
@@ -15,7 +15,7 @@ $(document).ready(function () {
             html_text += img + "\n";
             i++;
         }
-        html_text += "</div>";
+        html_text += "</div></div>";
         $("#my-imgs").html(html_text);
     }).fail(function() {
         $("#my-imgs").text("Error!");
