@@ -40,13 +40,19 @@ exports.handler = async function(event, context){
                 if (file.mimeType && file.mimeType.includes("image")) {
                     let name = file.name.substring(0, file.name.lastIndexOf("."));
                     let imgLink = file.webContentLink.substring(0, file.webContentLink.indexOf("&export"));
-                    f_out = "<img width='100%' alt='" + name + "' src='" + imgLink + "'/>";
-                    out.push(f_out);
-                } else if (file.mimeType && file.mimeType.includes("video")) {
-                    let videoLink = file.webContentLink.substring(0, file.webContentLink.indexOf("&export"));
-                    f_out = "<video width='100%' controls> <source src='" + videoLink + "'/> </video>";
+                    // f_out = "<img width='100%' alt='" + name + "' src='" + imgLink + "'/>";
+                    f_out = "<img\n" +
+                        "  src='" + imgLink + "\n" +
+                        "  class='w-100 shadow-1-strong rounded mb-4'\n" +
+                        "  alt='Boat on Calm Water'\n" +
+                        "/>"
                     out.push(f_out);
                 }
+                // } else if (file.mimeType && file.mimeType.includes("video")) {
+                //     let videoLink = file.webContentLink.substring(0, file.webContentLink.indexOf("&export"));
+                //     f_out = "<video width='100%' controls> <source src='" + videoLink + "'/> </video>";
+                //     out.push(f_out);
+                // }
                 // console.log("file out:", f_out);
             }
         } else {
