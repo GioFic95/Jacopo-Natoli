@@ -41,7 +41,7 @@ exports.handler = async function(event, context){
                     let name = file.name.substring(0, file.name.lastIndexOf("."));
                     let imgLink = file.webContentLink.substring(0, file.webContentLink.indexOf("&export"));
                     // f_out = "<img width='100%' alt='" + name + "' src='" + imgLink + "'/>";
-                    f_out = "<img class='w-100 shadow-1-strong rounded mb-4' src='" + imgLink + " alt='" + name + "'/>"
+                    f_out = "<img class='w-100 shadow-1-strong rounded mb-4' src='" + imgLink + "' alt='" + name + "'/>"
                     out.push(f_out);
                 }
                 // } else if (file.mimeType && file.mimeType.includes("video")) {
