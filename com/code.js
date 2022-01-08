@@ -13,6 +13,7 @@ $(document).ready(function () {
             else if (i % (imgs.length/3) === 0)
                 html_text += "</div>\n<div class='col-lg-4 col-md-12 mb-4 mb-lg-0'>";
             html_text += img + "\n";
+            i++;
         }
         html_text += "</div>";
         $("#my-imgs").html(html_text);
