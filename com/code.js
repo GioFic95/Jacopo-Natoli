@@ -1,9 +1,5 @@
 $(document).ready(function () {
-    console.log("pre");
-
     $.get("/.netlify/functions/getPics", function(data) {
-        console.log("success");
-        console.log(data);
         let imgs = JSON.parse(data);
         let html_text = "<div class=\"row\">"
         let i = 0;
@@ -20,5 +16,4 @@ $(document).ready(function () {
     }).fail(function() {
         $("#my-imgs").text("Error!");
     });
-    console.log("post");
 });

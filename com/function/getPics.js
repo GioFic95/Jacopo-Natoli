@@ -29,13 +29,12 @@ exports.handler = async function(event, context){
         // console.log("*** response: ", response);
 
         files = response.data.files;
-        console.log("data:", files);
+        // console.log("data:", files);
 
         out = [];
         let file;
         if (files && files.length > 0) {
             for (file of files) {
-                // console.log("file: ", file);
                 let f_out;
                 if (file.mimeType && file.mimeType.includes("image")) {
                     let name = file.name.substring(0, file.name.lastIndexOf("."));
@@ -59,7 +58,7 @@ exports.handler = async function(event, context){
         return;
     }
 
-    console.log("out:", out);
+    // console.log("out:", out);
     console.log("img num:", out.length);
 
     // id = Math.floor(Math.random() * (out.length - 1));
