@@ -67,6 +67,6 @@ exports.handler = async function(event, context){
 
     return {
         statusCode: 200,
-        body: String(out.length) // body
+        body: JSON.stringify(out)  // body
     };
 };
